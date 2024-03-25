@@ -46,7 +46,7 @@ class ViewModel {
                 items.remove(at: index) // Remove the item from the items array
             }
         } catch {
-            print("Error deleting item: \(error)")
+            print("Error deleting one item: \(error)")
         }
     }
     
