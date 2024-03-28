@@ -17,9 +17,7 @@ struct ContentView: View {
            NavigationStack {
                VStack {
                    List(viewModel.items) { item in
-                       NavigationLink(destination: Text("This is user \(item.name)")) {
-                           Text("Go to user \(item.name)")
-                       }
+                       NavigationLink("Go to user \(item.name)", destination: DetailView(item: item))
                        .contextMenu {
                            Button("Delete") {
                                viewModel.deleteItem(item)
@@ -43,13 +41,22 @@ struct ContentView: View {
                    }.foregroundColor(.red)
                                    .padding()
                }
-               .navigationTitle("Items")
+               .navigationTitle("User")
                .onAppear {
                    viewModel.modelContext = modelContext
                    viewModel.fetchItems()
                }
            }
        }
+}
+
+struct DetailView : View {
+    let item : Item
+    var body: some View {
+        VStack{
+            Text("This is user \(item.name)")
+        }.navigationTitle("Details")
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
